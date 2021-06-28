@@ -16,9 +16,9 @@ def pdfMaker(title):
     pdf.add_page()
     pdf.set_title(title)
 
-    x = 10 #edge of picture
-    y = 35 #end of picture
-    j = 0 #number of pictures on row
+    x = 10 #abscissa of upper-left corner
+    y = 35 #ordinate of upper-left corner
+    j = 0 #number of pictures on column
     m = 0 #number of rows on page
 
 
@@ -26,17 +26,17 @@ def pdfMaker(title):
     # pdf pixel height: 297
 
     for image in imagelist:
-        pdf.rect(x - 0.7, y-0.7, 56.4, 46.4) #creates border around images
+        pdf.rect(x - 0.7, y-0.7, 56.4, 46.4) #create border around images
         pdf.image(image, x, y, 55, 45)
         j = j + 1
         x += 67.5
-        if j == 3:
+        if j == 3: #add row at 3 pictures per column
             y = y + 57
             x = 10
             j = 0
             m += 1
-            if m == 4:
-                pdf.add_page()
+            if m == 4: #stop at 4 rows
+                pdf.add_page() #create another page and reset pixel count
                 m = 0
                 x = 10
                 y = 35
